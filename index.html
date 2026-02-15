@@ -6,35 +6,121 @@
 <title>Saifmod Key System</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
 body{
-  background:#0f0f0f;
-  color:white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-  font-family:Arial;
-  text-align:center;
+background:linear-gradient(135deg,#0f0f0f,#1a1a1a);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
-.card{
-  background:#111;
-  padding:25px;
-  width:90%;
-  max-width:350px;
-  border-radius:15px;
+
+.container{
+width:90%;
+max-width:400px;
+background:#111;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 25px #00ffcc33;
+text-align:center;
 }
+
+h1{color:#00ffcc;margin-bottom:10px}
+p{opacity:0.8;margin-bottom:15px;font-size:14px}
+
 button{
-  padding:12px;
-  width:100%;
-  margin-top:15px;
-  border:none;
-  border-radius:8px;
-  background:#00ffcc;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#00ffcc;
+color:black;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
 }
+
+button:hover{background:#00ccaa}
+
+.hidden{display:none}
+
+#countdown{
+margin-top:10px;
+color:#00ffcc;
+font-size:14px;
+}
+
 #keyBox{
-  margin-top:15px;
+margin-top:15px;
+word-break:break-all;
+color:#00ffcc;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page1">
+<h1>🔐 SAIFMOD</h1>
+<p>احصل على مفتاح التفعيل عبر الاشتراك بالقناة</p>
+<button onclick="goToPage2()">الحصول على مفتاح</button>
+</div>
+
+<div class="container hidden" id="page2">
+<h1>📢 اشترك بالقناة</h1>
+<p>اضغط الزر واشترك ثم انتظر 10 ثواني</p>
+
+<a href="https://t.me/SCRIPT_SAIF" target="_blank">
+<button>الانضمام للقناة</button>
+</a>
+
+<div id="countdown">انتظر 10 ثواني...</div>
+<button id="getKeyBtn" class="hidden" onclick="generateKey()">استلام المفتاح</button>
+
+<div id="keyBox"></div>
+</div>
+
+<script>
+
+function goToPage2(){
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+startCountdown();
+}
+
+function startCountdown(){
+let time=10;
+let countdown=document.getElementById("countdown");
+let btn=document.getElementById("getKeyBtn");
+
+let interval=setInterval(function(){
+time--;
+countdown.innerText="انتظر "+time+" ثواني...";
+if(time<=0){
+clearInterval(interval);
+countdown.innerText="تم التحقق ✔";
+btn.classList.remove("hidden");
+}
+},1000);
+}
+
+function generateKey(){
+let chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let key="";
+for(let i=0;i<20;i++){
+key+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+document.getElementById("keyBox").innerText="YOUR KEY: "+key;
+}
+
+</script>
+
+</body>
+</html>  margin-top:15px;
   word-break:break-all;
   color:#00ffcc;
 }
