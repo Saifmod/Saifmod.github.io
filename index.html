@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Saifmod</title>
+<meta charset="UTF-8">
+<title>Saifmod Key System</title>
+<style>
+body{
+  background:#0f0f0f;
+  color:white;
+  text-align:center;
+  font-family:Arial;
+}
+button{
+  padding:10px 20px;
+  background:#00ff88;
+  border:none;
+  cursor:pointer;
+  font-weight:bold;
+}
+#keyBox{
+  margin-top:20px;
+  font-size:20px;
+  color:#00ff88;
+}
+</style>
 </head>
-<body style="background:black; color:white; text-align:center; font-family:Arial;">
-  <h1>🔥 SAIFMOD 🔥</h1>
-  <p>اول موقع الي من GitHub</p>
+<body>
+
+<h1>🔐 SAIFMOD KEY SYSTEM</h1>
+<p>اضغط الزر للحصول على مفتاح</p>
+
+<button onclick="generateKey()">Get Key</button>
+
+<div id="keyBox"></div>
+
+<script>
+function generateKey(){
+  let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let key = "";
+  for(let i=0;i<16;i++){
+    key += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  document.getElementById("keyBox").innerText = "Your Key: " + key;
+}
+</script>
+
 </body>
 </html>
